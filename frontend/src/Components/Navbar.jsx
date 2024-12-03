@@ -1,34 +1,38 @@
-import React from 'react';
-import Annotixword from '../assets/Annotixword.svg';
-import { Link } from 'react-router-dom';
-import { Button, colors } from '@mui/material';
-import { red } from '@mui/material/colors';
-import { withEmotionCache } from '@emotion/react';
+import React from "react";
+import logo from "../assets/logo.png";
+import { navItems } from "../constants";
 
-
-export const Navbar = () => {
+const Navbar = () => {
   return (
-   <>
-   <header>
-   <nav className='flex justify-between items-center w-[92%] mx-auto'>
-    <div>
-        <img className= "w-20"src= {Annotixword}  alt='wordlogo'/>
-    </div>
-    <div className="links">
-        <uL className ="flex justify-center space-x-5">
-              <Link to ='/product'><li className='hover:underline'>Product</li></Link>  
-              <Link to ='/learderboard'><li className='hover:underline'>Leaderboards</li></Link> 
-              <Link to ='/enterprise'><li className='hover:underline'>Enterprise</li></Link>
-              <Link to ='/government'><li className='hover:underline'>Government</li></Link>  
-              <Link to ='/customers'><li className='hover:underline' >Customers</li></Link> 
-        </uL>
-    </div>
-    <div>
-    <Button sx={{backgroundColor: 'white',color:'black', '&:hover': { backgroundColor: '#ab47bc'}}}>Sign In</Button>
-    </div>
-   </nav>
-   </header>
-   
-   </>
+    <nav className="sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-neutral-700/80">
+      <div className="container px-4 mx-auto relative lg:text-sm">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center flex-shrink-0">
+            <img className="h-5 w-23 mr-5" src={logo} alt="logo" />
+          </div>
+
+          <ul className="hidden lg:flex ml-14 space-x-12">
+            {navItems.map((items, index) => (
+              <li key={index}>
+                <a href={items.href}>{items.label}</a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="hidden lg:flex justify-center space-x-12 items-center">
+            <a href="#" className="py-2 px-3 border rounded-md">
+              Sign In
+            </a>
+
+            <a href="#" className="bg-gradient-to-r from-purple-500 to-purple-800 py-2 px-3 rounded-md">
+                Create an account
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 };
+
+export default Navbar;
